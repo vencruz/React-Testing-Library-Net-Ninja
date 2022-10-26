@@ -25,8 +25,10 @@ it("should be empty when add button is clicked", () => {
   render(<AddInput todos={[]} setTodos={mockedSetTodo} />);
 
   const inputElement = screen.getByPlaceholderText(/Add a new task here.../i);
+  const buttonElement = screen.getByRole("button", { name: /Add/i });
 
-  fireEvent.click(inputElement);
+  fireEvent.change(inputElement, { target: { value: "Test" } });
+  fireEvent.click(buttonElement);
 
   expect(inputElement.value).toBe("");
 });
